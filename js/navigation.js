@@ -97,3 +97,29 @@
 		}
 	}
 }() );
+/**
+ * Function MenuToggleClick
+ * 
+ * This function is used to erase the button toggle and set new styles
+ */
+function menuToggleClick(){
+	// Erase the toggle button
+	let boton = document.getElementById('menu-toggle');
+		boton.style.display = 'none';
+
+	let enlace = document.getElementsByClassName('site-branding');
+	if (enlace != null){
+		let vector = Array.prototype.slice.call(enlace);
+			vector[0].style.display = 'flex';
+			vector[0].style.maxWidth = '100%'; 
+			vector[0].style.justifyContent = 'space-between';
+	}
+
+	let header_content = document.getElementsByClassName('header-content');
+		if (header_content != null){
+			let vector = Array.prototype.slice.call(header_content);
+				vector[0].style.flexFlow = 'column nowrap'; 
+				vector[0].style.justifyContent = 'center';
+		}
+
+}

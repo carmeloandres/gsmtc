@@ -22,7 +22,7 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php
+<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) :
 		?>
@@ -46,88 +46,32 @@ if ( post_password_required() ) {
 			?>
 		</h2><!-- .comments-title -->
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-            <nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
-                <h2 class="screen-reader-text"><?php esc_html_e( 'Navegacon de comentarios', 'gsmtc' ); ?></h2>
-                <div class="nav-links">
+		<?php the_comments_navigation(); ?>
 
-                    <div class="nav-previous"><?php previous_comments_link( esc_html__( 'Comentarios anteriores', 'gsmtc' ) ); ?></div>
-                    <div class="nav-next"><?php next_comments_link( esc_html__( 'Comentarios recientes', 'gsmtc' ) ); ?></div>
+		<ol class="comment-list">
+			<?php
+			wp_list_comments(
+				array(
+					'style'      => 'ol',
+					'short_ping' => true,
+				)
+			);
+			?>
+		</ol><!-- .comment-list -->
 
-                </div><!-- .nav-links -->
-            </nav><!-- #comment-nav-above -->
-        <?php endif; // Check for comment navigation. ?>
-        <ul class="comment-list">
-            <?php
-                wp_list_comments( array( 'callback' => 'gsmtc_comment', 'avatar_size' => 128 ));
-            ?>
-        </ul><!-- .comment-list -->
+		<?php
+		the_comments_navigation();
 
-        <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-            <nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
-                <h2 class="screen-reader-text"><?php esc_html_e( 'Navegación de comentarios', 'gsmtc' ); ?></h2>
-                <div class="nav-links pagination justify-content-center">
+		// If comments are closed and there are comments, let's leave a little note, shall we?
+		if ( ! comments_open() ) :
+			?>
+			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'gsmtc' ); ?></p>
+			<?php
+		endif;
 
-                    <div class="nav-previous page-item"><?php previous_comments_link( esc_html__( 'Comentarios anteriores', 'gsmtc') ) ; ?></div>
-                    <div class="nav-next page-item"><?php next_comments_link( esc_html__( 'Comentarios recientes', 'gsmtc' ) ); ?></div>
+	endif; // Check for have_comments().
 
-                </div><!-- .nav-links -->
-            </nav><!-- #comment-nav-below -->
-            <?php
-        endif; // Check for comment navigation.
-
-    endif; // Check for have_comments().
-
-    // If comments are closed and there are comments, let's leave a little note, shall we?
-    if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-
-        <p class="no-comments"><?php esc_html_e( 'Los comentarios están cerrados.', 'gsmtc' ); ?></p>
-        <?php
-    endif; ?>
-
-    <?php comment_form( $args = array(
-        'id_form'           => 'commentform',  // that's the wordpress default value! delete it or edit it ;)
-        'id_submit'         => 'commentsubmit',
-        'title_reply'       => __( 'Deja un comentario', 'gsmtc' ),  // that's the wordpress default value! delete it or edit it ;)
-        'title_reply_to'    => __( 'Deja un comentario a %s', 'gsmtc' ),  // that's the wordpress default value! delete it or edit it ;)
-        'cancel_reply_link' => __( 'Cancelar', 'gsmtc' ),  // that's the wordpress default value! delete it or edit it ;)
-        'label_submit'      => __( 'Commentar', 'gsmtc' ),  // that's the wordpress default value! delete it or edit it ;)
-
-        'comment_field' =>  '<p><textarea placeholder="' . __('Comienza a escribir...', 'gsmtc') . '" id="comment" class="form-control" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
-
-        /*'comment_notes_after' => '<p class="form-allowed-tags">' .
-            __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:', 'bootscore' ) .
-            '</p><div class="alert alert-info">' . allowed_tags() . '</div>'*/
-
-        // So, that was the needed stuff to have bootstrap basic styles for the form elements and buttons
-
-        // Basically you can edit everything here!
-        // Checkout the docs for more: http://codex.wordpress.org/Function_Reference/comment_form
-        // Another note: some classes are added in the bootstrap-wp.js - ckeck from line 1
-
-
-		// Custom Bootstrap Formfields
-    	'fields' => apply_filters(
-        	'comment_form_default_fields', array(
-            	'author' =>'<p class="comment-form-author">' . '<input id="author" class="form-control" placeholder="' . __('Nombre*', 'gsmtc') . '" name="author" type="text" value="' .
-                	esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req = '' . ' />'.
-                	'</p>'
-                	,
-            	'email'  => '<p class="comment-form-email">' . '<input class="form-control "id="email" placeholder="' . __('Email* (no será publicado)', 'gsmtc') . '" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-                	'" size="30"' . $aria_req = '' . ' />'  .
-
-                	'</p>',
-            	'url'    => '<p class="comment-form-url">' .
-             	'<input class="form-control" id="url" name="url" placeholder="' . __('Website', 'gsmtc') . '" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /> ' .
-
-               		'</p>'
-        	)
-        	
-    	),
-    	// Custom Formfields End 
-
-    ));
-
-	?>        
+	comment_form();
+	?>
 
 </div><!-- #comments -->
