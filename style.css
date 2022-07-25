@@ -19,17 +19,14 @@ gesimatica is based on Underscores https://underscores.me/, (C) 2012-2020 Automa
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 */
-/* My custom toggler-icon */
- /* Set the border color */
-          
- .custom-toggler.navbar-toggler {
+/* My custom menu toggler-icon */
+ /* Set the border color and background */
+ .menu-toggle {
+	padding:30px;
 	border-color:  #2f4f80;
-}
-/* Setting the stroke to green using rgb values (0, 128, 0) */
-  
-.custom-toggler .navbar-toggler-icon {
+	background-color: #fff;
 	background-image: url(
-"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(47, 79, 128, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+		"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(47, 79, 128, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 /*--------------------------------------------------------------
