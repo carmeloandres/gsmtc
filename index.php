@@ -14,60 +14,43 @@
 
 get_header();
 ?>
-<div id="content" class="container my-5 py-5">
-    <div class="row">
-        <div class="col-md-9">
-            <main id="primary" class="site-main">
-            <?php if ( have_posts() ) : ?>
-				<?php while ( have_posts() ) :?>
+	<main id="primary" class="site-main">
 
-                    <header class="entry-header">
-                        <?php the_post(); ?>
-                        <?php gsmtc_category_badge(); ?>
-                        <?php the_title('<h1>', '</h1>'); ?>
-                        <p class="entry-meta">
-                            <small class="text-muted">
-                            <?php
-						             gsmtc_date();
-						             _e(' por ', 'gsmtc'); the_author_posts_link();
-						             gsmtc_comment_count();							
-					        ?>
-                            </small>
-                        </p>
-                        <?php gsmtc_post_thumbnail(); ?>
-                    </header>
-
-                    <div class="entry-content">
-                        <?php the_content(); ?>
-                    </div>
-
-                    <footer class="entry-footer clear-both">
-                        <div class="mb-4">
-                            <?php gsmtc_tags(); ?>
-                        </div>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-around">
-                                    <li class="page-item">
-                                        <?php previous_post_link('%link'); ?>
-                                    </li>
-                                <li class="page-item">
-                                    <?php next_post_link('%link'); ?>
-                                </li>
-                            </ul>
-                        </nav>
-                    </footer>
-
-                <?php comments_template(); 
-				endwhile; 
-                endif;                  
-                ?>
-                
-	</main><!-- #main -->
-	</div> <!-- col-md-9 -->
-    <div class="col-md-3">
-    <?php get_sidebar(); ?>   
-    </div>
-	</div> <!-- row -->
-	</div> <!-- #content -->
 <?php
+if ( have_posts() ) :
+
+    if ( is_home() && ! is_front_page() ) :
+        ?>
+        <header>
+            <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+        </header>
+        <?php
+    endif;
+
+    /* Start the Loop */
+    while ( have_posts() ) :
+        the_post();
+
+        /*
+         * Include the Post-Type-specific template for the content.
+         * If you want to override this in a child theme, then include a file
+         * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+         */
+        get_template_part( 'template-parts/content', get_post_type() );
+
+    endwhile;
+
+    the_posts_navigation();
+
+else :
+
+    get_template_part( 'template-parts/content', 'none' );
+
+endif;
+?>
+
+</main><!-- #main -->
+
+<?php
+get_sidebar();
 get_footer();

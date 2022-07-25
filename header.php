@@ -24,25 +24,27 @@
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
-        <div class="site-branding">
-				<?php 
-                the_custom_logo(); 
-			    $gsmtc_description = get_bloginfo( 'description', 'display' );
-			    if ( $gsmtc_description || is_customize_preview() ) :
-				// To take efect de enable/disable of description must use class "site-description"
+        <div class="header-content">
+            <div class="site-branding">
+                    <?php 
+                    the_custom_logo(); 
+                    $gsmtc_description = get_bloginfo( 'description', 'display' );
+                    if ( $gsmtc_description || is_customize_preview() ) :
+                    // To take efect de enable/disable of description must use class "site-description"
+                    ?>
+                    <p class="site-description"><?php echo $gsmtc_description;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><p>
+                    <?php endif; ?>                
+            </div> <!-- .site-branding -->
+            <nav id="site-navigation" class="main-navigation">
+                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"></button>
+                <?php
+                wp_nav_menu(
+                    array(
+                        'theme_location' => 'menu-1',
+                        'menu_id'        => 'primary-menu',
+                        )
+                    );
                 ?>
-				<p class="site-description"><?php echo $gsmtc_description;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			    <?php endif; ?>                
-        </div> <!-- .site-branding -->
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
+            </nav><!-- .site-navigation -->
+        </div> <!-- .header-content -->
 	</header><!-- #masthead -->
