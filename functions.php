@@ -73,12 +73,13 @@ function gsmtc_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'main-menu' => esc_html__( 'Menu principal', 'gsmtc' ),
+			'menu-1' => esc_html__( 'Primary', 'gsmtc' ),
+//			'main-menu' => esc_html__( 'Menu principal', 'gsmtc' ),
 		)
 	);
 
  	// Includes the nav menu walker bootstrap 5 file
- 	include_once ('inc/class-bootstrap-5-nav-menu-walker.php');
+// 	include_once ('inc/class-bootstrap-5-nav-menu-walker.php');
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
@@ -226,11 +227,11 @@ add_action( 'widgets_init', 'gsmtc_widgets_init' );
  */
 function gsmtc_scripts() {
 
-	wp_enqueue_style( 'gsmtc-bootstrap', get_template_directory_uri().'/css/bootstrap.css', array(), _S_VERSION );
+//	wp_enqueue_style( 'gsmtc-bootstrap', get_template_directory_uri().'/css/bootstrap.css', array(), _S_VERSION );
 	wp_enqueue_style( 'gsmtc-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'gsmtc-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'gsmtc-navigation', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'gsmtc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -282,7 +283,7 @@ if (!defined('gsmtc_change_logo_class')){
 		
     	return $html;
 	}
-	add_filter( 'get_custom_logo', 'gsmtc_change_logo_class' );	
+//	add_filter( 'get_custom_logo', 'gsmtc_change_logo_class' );	
 }
 
 // Return an alternate title, without prefix, for every type used in the get_the_archive_title().
