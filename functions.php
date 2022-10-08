@@ -78,3 +78,27 @@ require_once get_theme_file_path( 'inc/register-block-styles.php' );
 
 // Block pattern and block category examples.
 require_once get_theme_file_path( 'inc/register-block-patterns.php' );
+
+/**
+ * Actualizaciones del Theme
+ */
+require_once(dirname(__FILE__).'/update-checker/update-checker.php');
+
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+        'https://gesimatica.com/updates/?action=get_metadata&slug=gsmtc',
+        __FILE__, //Full path to the main plugin file or functions.php.
+        'gsmtc'
+);
+
+$myUpdateChecker->addQueryArgFilter('wsh_filter_update_checks');
+function wsh_filter_update_checks($queryArgs) {
+//    $settings = get_option('my_plugin_settings');
+//    if ( !empty($settings['license_key']) ) {
+//        $queryArgs['license_key'] = $settings['license_key'];
+//    }
+    $queryArgs['user_id'] = '1';
+
+    $queryArgs['license_key'] = '123456789';
+//    error_log(var_export($queryArgs,true));
+    return $queryArgs;
+}
