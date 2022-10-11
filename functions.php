@@ -7,10 +7,22 @@
  * @package gesimatica
  */
 
+/**
+ * The theme version.
+ *
+ * @since 1.0.0
+ */
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.3' );
+	define( '_S_VERSION', wp_get_theme()->get( 'Version' ) );
 }
+
+/**
+ * Register class menu bootstrap 5 nav walker
+ */
+require_once('inc/class-bootstrap-5-nav-menu-walker.php');
+
 
 /**
  * Actualizaciones del Theme
@@ -227,11 +239,12 @@ add_action( 'widgets_init', 'gsmtc_widgets_init' );
  */
 function gsmtc_scripts() {
 
-//	wp_enqueue_style( 'gsmtc-bootstrap', get_template_directory_uri().'/css/bootstrap.css', array(), _S_VERSION );
+	wp_enqueue_style( 'gsmtc-bootstrap-css', get_template_directory_uri().'/css/bootstrap.css', array(), _S_VERSION );
 	wp_enqueue_style( 'gsmtc-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'gsmtc-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'gsmtc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'gsmtc-bootstrap-js', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
