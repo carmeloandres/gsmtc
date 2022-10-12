@@ -24,9 +24,16 @@
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
-        <nav id="nav-main" class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-5 fixed-top">
+        <nav id="nav-main" class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-warning border-5 fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/img/logo/GesimaticaLogo.png" alt="logo" class="gsmtc-logo"></a>
+                <a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>">
+                <?php
+                    the_custom_logo();
+                    $gsmtc_description = get_bloginfo('description','display');
+                    if ( $gsmtc_description || is_customize_preview() ): // To take efect the enable/disable of description must use class "site-description"
+                ?>
+                    <span class="site-description text-primary"><?php echo $gsmtc_description; ?></span>
+                    <?php endif ?>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="menu-toggle"></span>
                 </button>
