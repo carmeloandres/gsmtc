@@ -244,7 +244,7 @@ function gsmtc_scripts() {
 	wp_style_add_data( 'gsmtc-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'gsmtc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'gsmtc-bootstrap-js', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'gsmtc-bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -296,7 +296,7 @@ if (!defined('gsmtc_change_logo_class')){
 		
     	return $html;
 	}
-//	add_filter( 'get_custom_logo', 'gsmtc_change_logo_class' );	
+	add_filter( 'get_custom_logo', 'gsmtc_change_logo_class' );	
 }
 
 // Return an alternate title, without prefix, for every type used in the get_the_archive_title().

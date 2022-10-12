@@ -1,0 +1,13 @@
+//this rule is to prevent overlaping body with header because header has "fixed-top" class
+body{
+    padding-top: 120px;
+}
+a:visited{
+    color:  var(--#{$prefix}navbar-active-color);
+}
+
+.navbar-nav li:last-child{
+    color: $light;
+    background-color: $warning;
+    border-radius: 5px;
+}

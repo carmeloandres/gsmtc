@@ -14,7 +14,7 @@
 
 get_header();
 ?>
-<div id="content" class="Site-content container pt-4 mt-5">
+<div id="content" class="Site-content container">
     <div id="primary" class="content-area">
         <main id="primary" class="site-main">
         <p>Is Index</p>

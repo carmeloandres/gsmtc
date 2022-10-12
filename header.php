@@ -24,20 +24,19 @@
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
-        <nav id="nav-main" class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-warning border-5 fixed-top">
+        <nav id="nav-main" class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-primary fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>">
-                <?php
+            <?php
                     the_custom_logo();
                     $gsmtc_description = get_bloginfo('description','display');
                     if ( $gsmtc_description || is_customize_preview() ): // To take efect the enable/disable of description must use class "site-description"
                 ?>
-                    <span class="site-description text-primary"><?php echo $gsmtc_description; ?></span>
+                   <span class="site-description text-primary mx-3 px-3"><?php echo $gsmtc_description; ?></span>
                     <?php endif ?>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="menu-toggle"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="main-menu">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'main-menu',
