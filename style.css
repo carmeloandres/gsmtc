@@ -224,15 +224,6 @@ select {
 	text-transform: none;
 }
 
-/**
- * Correct the inability to style clickable types in iOS and Safari.
- */
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-	-webkit-appearance: button;
-}
 
 /**
  * Remove the inner border and padding in Firefox.
@@ -307,31 +298,6 @@ textarea {
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {
 	height: auto;
-}
-
-/**
- * 1. Correct the odd appearance in Chrome and Safari.
- * 2. Correct the outline style in Safari.
- */
-[type="search"] {
-	-webkit-appearance: textfield;
-	outline-offset: -2px;
-}
-
-/**
- * Remove the inner padding in Chrome and Safari on macOS.
- */
-[type="search"]::-webkit-search-decoration {
-	-webkit-appearance: none;
-}
-
-/**
- * 1. Correct the inability to style clickable types in iOS and Safari.
- * 2. Change font properties to `inherit` in Safari.
- */
-::-webkit-file-upload-button {
-	-webkit-appearance: button;
-	font: inherit;
 }
 
 /* Interactive
@@ -968,17 +934,17 @@ textarea {
 
 /* My custom menu toggler-icon */
  /* Set the border color and background */
- .menu-toggle {
-	
-	width: 30px;
-	height: 30px;
-	padding: 25px;
+ .menu-toggle {	
+	width: 40px;
+	height: 40px;
+	padding: 15px;
 	margin: 5px;
-	border-color:  #2f4f80;
+	border-color:  #fc6901;
 	background-color: #fff;
 	background-image: url(
-		"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(47, 79, 128, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+		"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(252, 106, 1, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
+
 
 .site-header {
 	width: 100%;
@@ -997,10 +963,6 @@ textarea {
 	padding: 5px;
 }
 
-.site-header .site-branding img{
-	/* min-width: 360px; */
-}
-
 #site-navigation {
 	display: flex;
 	flex-flow: column wrap;
@@ -1016,18 +978,22 @@ textarea {
 	color: #2f4f80
 }
 
+.gsmtc-logo{
+	width: 355px;
+	height: 40px;
+}
+
 /*--------------------------------------------------------------
-# Responsive 
+# Responsive - Gesimatica
 --------------------------------------------------------------*/
 
 /* Version tablet */
 @media screen and (max-width: 1023px) {  
 
-	.site-header .header-content {
-		/* flex-flow: column nowrap;
-		padding: 10px 3%; */
-	}
-
+/*	.site-header .header-content {
+		 flex-flow: column nowrap;
+		padding: 10px 3%; 
+	} */
 	.main-navigation li {
 		float: none;
 	}

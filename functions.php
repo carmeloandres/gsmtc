@@ -85,8 +85,8 @@ function gsmtc_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'gsmtc' ),
-//			'main-menu' => esc_html__( 'Menu principal', 'gsmtc' ),
+//			'menu-1' => esc_html__( 'Primary', 'gsmtc' ),
+			'main-menu' => esc_html__( 'Menu principal', 'gsmtc' ),
 		)
 	);
 
@@ -239,7 +239,7 @@ add_action( 'widgets_init', 'gsmtc_widgets_init' );
  */
 function gsmtc_scripts() {
 
-	wp_enqueue_style( 'gsmtc-bootstrap-css', get_template_directory_uri().'/css/bootstrap.css', array(), _S_VERSION );
+	wp_enqueue_style( 'gsmtc-bootstrap-css', get_template_directory_uri().'/assets/css/bootstrap.min.css', array(), _S_VERSION );
 	wp_enqueue_style( 'gsmtc-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'gsmtc-style', 'rtl', 'replace' );
 
