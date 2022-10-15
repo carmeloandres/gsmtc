@@ -2,6 +2,13 @@
 body{
     padding-top: 120px;
 }
+.error-404 a {
+    text-decoration: none;
+}
+.error-404 li{
+    list-style: none;
+}
+
 a:visited{
     color:  var(--#{$prefix}navbar-active-color);
 }
@@ -10,4 +17,89 @@ a:visited{
     color: $light;
     background-color: $warning;
     border-radius: 5px;
+}
+
+/*--------------------------------------------------------------
+# Header - Gesimatica
+--------------------------------------------------------------*/
+
+/* My custom menu toggler-icon */
+ /* Set the border color and background */
+ .menu-toggle {	
+	width: 40px;
+	height: 40px;
+	padding: 15px;
+	margin: 5px;
+	border-color:  #fc6901;
+	background-color: #fff;
+	background-image: url(
+		"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(252, 106, 1, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+
+.site-header {
+	width: 100%;
+	background-color: aquamarine;
+}
+.site-header .header-content {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	padding: 5px 50px;
+	max-width: calc(1300px - 100px);
+	margin: 0 auto;
+}
+
+.site-header .site-branding {
+	padding: 5px;
+}
+
+#site-navigation {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: flex-end;
+	flex-basis: 50%; 
+}
+
+.site-header .site-description {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: 20px;
+	color: #2f4f80
+}
+
+.gsmtc-logo{
+	width: 355px;
+	height: 40px;
+}
+
+/*--------------------------------------------------------------
+# Responsive - Gesimatica
+--------------------------------------------------------------*/
+
+/* Version tablet */
+@media screen and (max-width: 1023px) {  
+
+/*	.site-header .header-content {
+		 flex-flow: column nowrap;
+		padding: 10px 3%; 
+	} */
+	.main-navigation li {
+		float: none;
+	}
+
+	.menu-menu-1-container{
+		width: 100%;
+		text-align: center;
+		background-color: hotpink;
+	}
+
+}
+
+/* Version movil */
+@media screen and (max-width: 767px) {  
+	.site-description{
+		display: none;
+	}
 }
