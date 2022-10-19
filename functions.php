@@ -25,6 +25,12 @@ require_once('inc/class-bootstrap-5-nav-menu-walker.php');
 
 
 /**
+ * Register Comment list
+ */
+require_once('inc/comment-list.php');
+
+
+/**
  * Actualizaciones del Theme
  */
 require_once(dirname(__FILE__).'/update-checker/update-checker.php');
