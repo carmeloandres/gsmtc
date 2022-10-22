@@ -167,19 +167,47 @@ add_action( 'after_setup_theme', 'gsmtc_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function gsmtc_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'gsmtc' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'gsmtc' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-	        // Top Footer
+if ( ! function_exists('gsmtc_widgets_init')){
+
+	function gsmtc_widgets_init() {
+	
+			// Top Nav
+			register_sidebar(array(
+				'name' => esc_html__('Top Nav', 'gsmtc' ),
+				'id' => 'top-nav',
+				'description' => esc_html__('Add widgets here.', 'gsmtc' ),
+				'before_widget' => '<div class="ms-3">',
+				'after_widget' => '</div>',
+				'before_title' => '<div class="widget-title d-none">',
+				'after_title' => '</div>'
+			));
+			// Top Nav End
+	
+			// Top Nav Search
+			register_sidebar(array(
+				'name' => esc_html__('Top Nav Search', 'gsmtc' ),
+				'id' => 'top-nav-search',
+				'description' => esc_html__('Add widgets here.', 'gsmtc' ),
+				'before_widget' => '<div class="top-nav-search">',
+				'after_widget' => '</div>',
+				'before_title' => '<div class="widget-title d-none">',
+				'after_title' => '</div>'
+			));
+			// Top Nav Search End
+	
+			// Sidebar
+			register_sidebar(array(
+				'name'          => esc_html__( 'Sidebar', 'gsmtc' ),
+				'id'            => 'sidebar-1',
+				'description'   => esc_html__( 'Add widgets here.', 'gsmtc' ),
+				'before_widget' => '<section id="%1$s" class="widget %2$s card card-body mb-4 bg-light border-0">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h2 class="widget-title card-title border-bottom py-2">',
+				'after_title'   => '</h2>',
+			));
+			// Sidebar End
+	
+			// Top Footer
 			register_sidebar(array(
 				'name' => esc_html__('Top Footer', 'gsmtc' ),
 				'id' => 'top-footer',
@@ -190,7 +218,7 @@ function gsmtc_widgets_init() {
 				'after_title' => '</h2>'
 			));
 			// Top Footer End
-	
+		
 			// Footer 1
 			register_sidebar(array(
 				'name' => esc_html__('Footer 1', 'gsmtc' ),
@@ -202,7 +230,7 @@ function gsmtc_widgets_init() {
 				'after_title' => '</h2>'
 			));
 			// Footer 1 End
-	
+		
 			// Footer 2
 			register_sidebar(array(
 				'name' => esc_html__('Footer 2', 'gsmtc' ),
@@ -214,7 +242,7 @@ function gsmtc_widgets_init() {
 				'after_title' => '</h2>'
 			));
 			// Footer 2 End
-	
+		
 			// Footer 3
 			register_sidebar(array(
 				'name' => esc_html__('Footer 3', 'gsmtc' ),
@@ -226,7 +254,7 @@ function gsmtc_widgets_init() {
 				'after_title' => '</h2>'
 			));
 			// Footer 3 End
-	
+		
 			// Footer 4
 			register_sidebar(array(
 				'name' => esc_html__('Footer 4', 'gsmtc' ),
@@ -238,20 +266,43 @@ function gsmtc_widgets_init() {
 				'after_title' => '</h2>'
 			));
 			// Footer 4 End
-		
+	
+			// 404 Page
+			register_sidebar(array(
+				'name' => esc_html__('404 Page', 'gsmtc' ),
+				'id' => '404-page',
+				'description' => esc_html__('Add widgets here.', 'gsmtc'),
+				'before_widget' => '<div class="mb-4">',
+				'after_widget' => '</div>',
+				'before_title' => '<h1 class="widget-title">',
+				'after_title' => '</h1>'
+			));
+			// 404 Page End
+	
+	}
 }
 add_action( 'widgets_init', 'gsmtc_widgets_init' );
+
+// Enable shortcode in HTML-Widget
+add_filter( 'widget_text', 'shortcode_unautop');
+add_filter( 'widget_text', 'do_shortcode', 11 );
+// Enable shortcode in HTML-Widget End
+
 
 /**
  * Enqueue scripts and styles.
  */
 function gsmtc_scripts() {
-
+	// gsmtc bootstrap version
 	wp_enqueue_style( 'gsmtc-bootstrap-css', get_template_directory_uri().'/assets/css/bootstrap.min.css', array(), _S_VERSION );
-	wp_enqueue_style( 'gsmtc-style', get_stylesheet_uri(), array(), _S_VERSION );
+
+	// wp_enqueue_style( 'gsmtc-style', get_stylesheet_uri(), array(), _S_VERSION );
+
 	wp_style_add_data( 'gsmtc-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'gsmtc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	//wp_enqueue_script( 'gsmtc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+
+	// javascript bootstrap
 	wp_enqueue_script( 'gsmtc-bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -263,7 +314,7 @@ add_action( 'wp_enqueue_scripts', 'gsmtc_scripts' );
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -293,6 +344,162 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+// Amount of posts/products in category
+if ( ! function_exists( 'wpsites_query' ) ) :
+
+    function wpsites_query( $query ) {
+    if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
+            $query->set( 'posts_per_page', 24 );
+        }
+    }
+    add_action( 'pre_get_posts', 'wpsites_query' );
+
+endif;
+// Amount of posts/products in category End
+
+
+// Pagination Categories
+function gsmtc_pagination($pages = '', $range = 2) 
+{  
+	$showitems = ($range * 2) + 1;  
+	global $paged;
+	if($pages == '')
+	{
+		global $wp_query; 
+		$pages = $wp_query->max_num_pages;
+	
+		if(!$pages)
+			$pages = 1;		 
+	}   
+	
+	if(1 != $pages)
+	{
+	    echo '<nav aria-label="Page navigation" role="navigation">';
+        echo '<span class="sr-only">Page navigation</span>';
+        echo '<ul class="pagination justify-content-center ft-wpbs mb-4">';
+		
+     
+	 	if($paged > 2 && $paged > $range+1 && $showitems < $pages) 
+			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link(1).'" aria-label="First Page">&laquo;</a></li>';
+	
+	 	if($paged > 1 && $showitems < $pages) 
+			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($paged - 1).'" aria-label="Previous Page">&lsaquo;</a></li>';
+	
+		for ($i=1; $i <= $pages; $i++)
+		{
+		    if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
+				echo ($paged == $i)? '<li class="page-item active"><span class="page-link"><span class="sr-only">Current Page </span>'.$i.'</span></li>' : '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($i).'"><span class="sr-only">Page </span>'.$i.'</a></li>';
+		}
+		
+		if ($paged < $pages && $showitems < $pages) 
+			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($paged + 1).'" aria-label="Next Page">&rsaquo;</a></li>';  
+	
+	 	if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) 
+			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($pages).'" aria-label="Last Page">&raquo;</a></li>';
+	
+	 	echo '</ul>';
+        echo '</nav>';
+        // echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">Page</span> '.$paged.' <span class="text-muted">of</span> '.$pages.' ]</div>';	 	
+	}
+}
+//Pagination Categories End
+
+
+// Pagination Buttons Single Posts
+add_filter('next_post_link', 'post_link_attributes');
+add_filter('previous_post_link', 'post_link_attributes');
+
+function post_link_attributes($output) {
+    $code = 'class="page-link"';
+    return str_replace('<a href=', '<a '.$code.' href=', $output);
+}
+// Pagination Buttons Single Posts End
+
+// Excerpt to pages
+add_post_type_support( 'page', 'excerpt' );
+// Excerpt to pages End
+
+// Breadcrumb
+if ( ! function_exists( 'the_breadcrumb' ) ) :
+    function the_breadcrumb() {
+        if(!is_home()) {
+            echo '<nav class="breadcrumb mb-4 mt-2 bg-light py-1 px-2 rounded">';
+            echo '<a href="'.home_url('/').'">'.('<i class="bi bi-house-fill"></i>').'</a><span class="divider">&nbsp;/&nbsp;</span>';
+            if (is_category() || is_single()) {
+                the_category(' <span class="divider">&nbsp;/&nbsp;</span> ');
+                if (is_single()) {
+                    echo ' <span class="divider">&nbsp;/&nbsp;</span> ';
+                    the_title();
+                }
+            } elseif (is_page()) {
+                echo the_title();
+            }
+            echo '</nav>';
+        }
+    }
+    add_filter( 'breadcrumbs', 'breadcrumbs' );
+endif;
+// Breadcrumb End
+
+// Comment Button
+function gsmtc_comment_form( $args ) {
+    $args['class_submit'] = 'btn btn-outline-primary'; // since WP 4.1    
+    return $args;    
+}
+add_filter( 'comment_form_defaults', 'gsmtc_comment_form' );
+// Comment Button End
+
+// Password protected form
+function gsmtc_pw_form () {
+	$output = '
+		  <form action="'.get_option('siteurl').'/wp-login.php?action=postpass" method="post" class="form-inline">'."\n"
+		.'<input name="post_password" type="password" size="" class="form-control me-2 my-1" placeholder="' . __('Password', 'gsmtc') . '"/>'."\n"
+		.'<input type="submit" class="btn btn-outline-primary my-1" name="Submit" value="' . __('Submit', 'gsmtc') . '" />'."\n"
+		.'</p>'."\n"
+		.'</form>'."\n";
+	return $output;
+}
+add_filter("the_password_form","gsmtc_pw_form");
+// Password protected form End
+
+// Allow HTML in term (category, tag) descriptions
+foreach ( array( 'pre_term_description' ) as $filter ) {
+	remove_filter( $filter, 'wp_filter_kses' );
+	if ( ! current_user_can( 'unfiltered_html' ) ) {
+		add_filter( $filter, 'wp_filter_post_kses' );
+	}
+}
+ 
+// Allow HTML in author bio
+remove_filter('pre_user_description', 'wp_filter_kses');
+add_filter( 'pre_user_description', 'wp_filter_post_kses');
+// Allow HTML in author bio End
+
+// Hook after #primary
+function gsmtc_after_primary() {
+    do_action('gsmtc_after_primary');
+} 
+// Hook after #primary End
+
+// Open links in comments in new tab
+if ( ! function_exists( 'gsmtc_comment_links_in_new_tab' ) ) :
+    function gsmtc_comment_links_in_new_tab($text) 
+    {
+        return str_replace('<a', '<a target="_blank" rel=”nofollow”', $text);
+    }
+    add_filter('comment_text', 'gsmtc_comment_links_in_new_tab');
+endif;
+// Open links in comments in new tab
+
+
+
+foreach ( array( 'term_description' ) as $filter ) {
+	remove_filter( $filter, 'wp_kses_data' );
+}
+// Allow HTML in term (category, tag) descriptions End
+
+
 
 /**
  * Filter to add new clases to custom logo
@@ -421,8 +628,8 @@ if ( ! function_exists( 'gsmtc_comment_count' ) ) :
 			echo ' | <i class="far fa-comments"></i> <span class="comments-link">';
 
 			/* translators: %s: Name of current post. Only visible to screen readers. */
-			// comments_popup_link( sprintf( __( 'Leave a comment<span class="screen-reader-text"> on %s</span>', 'bootscore' ), get_the_title() ) );
-			comments_popup_link( sprintf( __( 'Leave a comment', 'bootscore' ), get_the_title() ) );
+			// comments_popup_link( sprintf( __( 'Leave a comment<span class="screen-reader-text"> on %s</span>', 'gsmtc' ), get_the_title() ) );
+			comments_popup_link( sprintf( __( 'Leave a comment', 'gsmtc' ), get_the_title() ) );
 
 
 			echo '</span>';
@@ -445,7 +652,7 @@ if ( ! function_exists( 'gsmtc_tags' ) ) :
 			$tags_list = get_the_tag_list( '', ' ' );
 			if ( $tags_list ) {
 				/* translators: 1: list of tags. */
-				printf( '<div class="tags-links mt-2">' . esc_html__( 'Tagged %1$s', 'bootscore' ) . '</div>', $tags_list ); // WPCS: XSS OK.
+				printf( '<div class="tags-links mt-2">' . esc_html__( 'Tagged %1$s', 'gsmtc' ) . '</div>', $tags_list ); // WPCS: XSS OK.
 			}
 		}
 	}
@@ -459,83 +666,8 @@ function add_tag_class($links) {
 }
 // Tags End
 
-// Breadcrumb
-if ( ! function_exists( 'the_breadcrumb' ) ) :
-    function the_breadcrumb() {
-        if(!is_home()) {
-            echo '<nav class="breadcrumb mb-4 mt-2 bg-light py-1 px-2 rounded">';
-            echo '<a href="'.home_url('/').'">'.('<i class="fas fa-home"></i>').'</a><span class="divider">&nbsp;/&nbsp;</span>';
-            if (is_category() || is_single()) {
-                the_category(' <span class="divider">&nbsp;/&nbsp;</span> ');
-                if (is_single()) {
-                    echo ' <span class="divider">&nbsp;/&nbsp;</span> ';
-                    the_title();
-                }
-            } elseif (is_page()) {
-                echo the_title();
-            }
-            echo '</nav>';
-        }
-    }
-    add_filter( 'breadcrumbs', 'breadcrumbs' );
-endif;
-// Breadcrumb End
 
-// Pagination Buttons Single Posts
-add_filter('next_post_link', 'post_link_attributes');
-add_filter('previous_post_link', 'post_link_attributes');
 
-function post_link_attributes($output) {
-    $code = 'class="page-link"';
-    return str_replace('<a href=', '<a '.$code.' href=', $output);
-}
-// Pagination Buttons Single Posts End
-
-// Pagination Categories
-function gsmtc_pagination($pages = '', $range = 2) 
-{  
-	$showitems = ($range * 2) + 1;  
-	global $paged;
-	if($pages == '')
-	{
-		global $wp_query; 
-		$pages = $wp_query->max_num_pages;
-	
-		if(!$pages)
-			$pages = 1;		 
-	}   
-	
-	if(1 != $pages)
-	{
-	    echo '<nav aria-label="Page navigation" role="navigation">';
-        echo '<span class="sr-only">Page navigation</span>';
-        echo '<ul class="pagination justify-content-center ft-wpbs mb-4">';
-		
-     
-	 	if($paged > 2 && $paged > $range+1 && $showitems < $pages) 
-			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link(1).'" aria-label="First Page">&laquo;</a></li>';
-	
-	 	if($paged > 1 && $showitems < $pages) 
-			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($paged - 1).'" aria-label="Previous Page">&lsaquo;</a></li>';
-	
-		for ($i=1; $i <= $pages; $i++)
-		{
-		    if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
-				echo ($paged == $i)? '<li class="page-item active"><span class="page-link"><span class="sr-only">Current Page </span>'.$i.'</span></li>' : '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($i).'"><span class="sr-only">Page </span>'.$i.'</a></li>';
-		}
-		
-		if ($paged < $pages && $showitems < $pages) 
-			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($paged + 1).'" aria-label="Next Page">&rsaquo;</a></li>';  
-	
-	 	if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) 
-			echo '<li class="page-item"><a class="page-link" href="'.get_pagenum_link($pages).'" aria-label="Last Page">&raquo;</a></li>';
-	
-	 	echo '</ul>';
-        echo '</nav>';
-        // echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">Page</span> '.$paged.' <span class="text-muted">of</span> '.$pages.' ]</div>';	 	
-	}
-}
-//Pagination Categories End
 
 // woocommerce funtions hooks
 
