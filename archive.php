@@ -10,23 +10,29 @@
 get_header();
 ?>
 <div id="content" class="container">
+	<div id="primary" class="content-area">
+
+    <!-- Hook to add something usefull or necesary -->
+    <?php do_action('gsmtc_after_primary'); ?>  
+
 	<div class="row">
 		<div class="col">
-			<main id="primary" class="site-main">
-	
+			<main id="main" class="site-main">
+
+            <!-- Title & Description -->
 			<header class="page-header">
-					<?php
+				<?php
 				the_archive_title( '<h1 class="page-title">', '</h1>' );
 				the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
-			</header><!-- .page-header -->
-			
+			</header>
+
+            <!-- Grid Layout -->
 			<?php if ( have_posts() ) : ?>
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post(); ?>
+			<?php while ( have_posts() ) : the_post(); ?>
 			<div class="card horizontal mb-4">
 				<div class="row">
+					<!-- Featured Image-->
 					<?php if (has_post_thumbnail())
 						echo '<div class="card-img-left-md col-lg-5">' . get_the_post_thumbnail(null, 'medium') . '</div>';
 					?>
@@ -40,18 +46,19 @@ get_header();
                                 </a>
                             </h2>
 							<?php if ( 'post' === get_post_type() ) : ?>
-                                <small class="text-muted mb-2">
+							<!-- Meta -->
+                            <small class="text-muted mb-2">
                             <?php
-									gsmtc_date();
-									gsmtc_author();
-									gsmtc_comments();
-									gsmtc_edit();
-									?>
-                                    </small>
+								gsmtc_date();
+								gsmtc_author();
+								gsmtc_comments();
+								gsmtc_edit();
+							?>
+                            </small>
                             <?php endif; ?>
                             <!-- Excerpt & Read more -->
                             <div class="card-text mt-auto">
-                                <?php the_excerpt(); ?> <a class="read-more" href="<?php the_permalink(); ?>"><?php _e('Leer más »', 'gsmtc'); ?></a>
+                                <?php the_excerpt(); ?> <a class="read-more" href="<?php the_permalink(); ?>"><?php _e('Read more »', 'gsmtc'); ?></a>
                         	</div>
                             <!-- Tags -->
                             <?php gsmtc_tags(); ?>
@@ -59,21 +66,24 @@ get_header();
 					</div>
 				</div><!-- row -->
 			</div><!-- card -->
-			<?php endwhile; 
+			<?php endwhile; ?>
 
-	the_posts_navigation();
+            <!-- Pagination -->
+			<div>
+				<?php gsmtc_pagination(); ?>
+			</div> 
 
-else :
+			<?php else : 
 
-	get_template_part( 'template-parts/content', 'none' );
+				get_template_part( 'template-parts/content', 'none' );
 
-endif;
-?>
+			endif; ?>
 
 			</main><!-- #main -->
 		</div><!-- col -->
 		<?php get_sidebar(); ?>
 	</div><!-- row -->
+	</div><!-- #primary -->
 </div><!-- #content -->
 <?php
 get_footer();

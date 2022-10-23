@@ -476,12 +476,6 @@ remove_filter('pre_user_description', 'wp_filter_kses');
 add_filter( 'pre_user_description', 'wp_filter_post_kses');
 // Allow HTML in author bio End
 
-// Hook after #primary
-function gsmtc_after_primary() {
-    do_action('gsmtc_after_primary');
-} 
-// Hook after #primary End
-
 // Open links in comments in new tab
 if ( ! function_exists( 'gsmtc_comment_links_in_new_tab' ) ) :
     function gsmtc_comment_links_in_new_tab($text) 

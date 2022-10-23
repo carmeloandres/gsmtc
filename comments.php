@@ -32,13 +32,13 @@ if ( post_password_required() ) {
 			if ( '1' === $gsmtc_comment_count ) {
 				printf(
 					/* translators: 1: title. */
-					esc_html__( 'Una opinion de &ldquo;%1$s&rdquo;', 'gsmtc' ),
+					esc_html__( 'One Comment on &ldquo;%1$s&rdquo;', 'gsmtc' ),
 					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);
 			} else {
 				printf( 
 					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s opinión de &ldquo;%2$s&rdquo;', '%1$s opiniones de &ldquo;%2$s&rdquo;', $gsmtc_comment_count, 'comments title', 'gsmtc' ) ),
+					esc_html( _nx( '%1$s Comment on &ldquo;%2$s&rdquo;', '%1$s Comments on &ldquo;%2$s&rdquo;', $gsmtc_comment_count, 'comments title', 'gsmtc' ) ),
 					number_format_i18n( $gsmtc_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);
@@ -78,6 +78,7 @@ if ( post_password_required() ) {
         endif; // Check for comment navigation.
 
     endif; // Check for have_comments().
+    
     // If comments are closed and there are comments, let's leave a little note, shall we?
     if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 
