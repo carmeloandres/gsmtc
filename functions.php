@@ -183,18 +183,6 @@ if ( ! function_exists('gsmtc_widgets_init')){
 			));
 			// Top Nav End
 	
-			// Top Nav Search
-			register_sidebar(array(
-				'name' => esc_html__('Top Nav Search', 'gsmtc' ),
-				'id' => 'top-nav-search',
-				'description' => esc_html__('Add widgets here.', 'gsmtc' ),
-				'before_widget' => '<div class="top-nav-search">',
-				'after_widget' => '</div>',
-				'before_title' => '<div class="widget-title d-none">',
-				'after_title' => '</div>'
-			));
-			// Top Nav Search End
-	
 			// Sidebar
 			register_sidebar(array(
 				'name'          => esc_html__( 'Sidebar', 'gsmtc' ),
