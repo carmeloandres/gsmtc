@@ -14,25 +14,51 @@
 
 get_header();
 ?>
+<div id="content" class="container">
+	<div id="primary" class="content-area">
 
-<main id="primary" class="site-main">
+    <!-- Hook to add something usefull or necesary -->
+    <?php do_action('gsmtc_after_primary'); ?>  
+
+	<div class="row">
+            <div class="col-md-8 col-xxl-9">
+
+                <main id="main" class="site-main">
+
+                    <header class="entry-header">
+                        <?php the_post(); ?>
+                        <!-- Title -->
+                        <?php the_title('<h1>', '</h1>'); ?>
+                        <!-- Featured Image-->
+                        <?php gsmtc_post_thumbnail(); ?>
+                        <!-- .entry-header -->
+                    </header>
+
+                    <div class="entry-content">
+                        <!-- Content -->
+                        <?php the_content(); ?>
+                        <!-- .entry-content -->
+                        <?php wp_link_pages( array(
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'gsmtc' ),
+					'after'  => '</div>',
+					) );
+					?>
+                    </div>
+
+                    <footer class="entry-footer">
+
+                    </footer>
+                    <!-- Comments -->
+                    <?php comments_template(); ?>
+
+                </main><!-- #main -->
+
+            </div><!-- col -->
+            <?php get_sidebar(); ?>
+        </div><!-- row -->
+
+    </div><!-- #primary -->
+</div><!-- #content -->
 
 <?php
-while ( have_posts() ) :
-	the_post();
-
-	get_template_part( 'template-parts/content', 'page' );
-
-	// If comments are open or we have at least one comment, load up the comment template.
-	if ( comments_open() || get_comments_number() ) :
-		comments_template();
-	endif;
-
-endwhile; // End of the loop.
-?>
-
-</main><!-- #main -->
-
-<?php
-get_sidebar();
 get_footer();

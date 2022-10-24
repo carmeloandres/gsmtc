@@ -34,8 +34,8 @@
                 <span class="site-description text-primary mx-3 px-3"><?php echo $gsmtc_description; ?></span>
                 <?php endif ?>
 
-                <button class="navbar-toggler" style="color: #fc6901; border-color: #fc6901;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="bi bi-list" style="color: #fc6901"></i>
+                <button class="navbar-toggler border-warning text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

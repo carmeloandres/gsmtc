@@ -314,7 +314,7 @@ if ( ! function_exists( 'gsmtc_post_thumbnail' ) ) :
 			?>
 
 			<div class="post-thumbnail">
-				<?php the_post_thumbnail(); ?>
+				<?php the_post_thumbnail('full', array('class' => 'rounded mb-3')); ?>
 			</div><!-- .post-thumbnail -->
 
 		<?php else : ?>
