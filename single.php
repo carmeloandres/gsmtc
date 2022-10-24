@@ -16,7 +16,13 @@ get_header(); ?>
 
         <?php the_breadcrumb(); ?>
         <div class="row">
+
+        <?php  if ( is_active_sidebar( 'sidebar-1' ) ) {  ?>
             <div class="col-md-8 col-xxl-9">
+        <?php } else { ?>
+            <div class="col">
+        <?php } ?>
+
             	<main id="main" class="site-main">
                     <header class="entry-header">
                         <?php the_post(); ?>
@@ -54,7 +60,11 @@ get_header(); ?>
                     <?php comments_template(); ?>
                 </main><!-- #main -->
             </div><!-- col -->
-        <?php get_sidebar(); ?>
+
+            <?php  if ( is_active_sidebar( 'sidebar-1' ) ) {
+                        get_sidebar(); 
+            }?>
+
         </div><!-- row -->
     </div><!-- #primary -->
 </div><!-- #content -->

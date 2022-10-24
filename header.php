@@ -24,7 +24,7 @@
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
-        <nav id="nav-main" class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-primary fixed-top">
+        <nav id="nav-main" class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-primary border-2 fixed-top">
             <div class="container">
             <?php
                 the_custom_logo();
