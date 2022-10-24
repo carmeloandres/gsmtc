@@ -11,6 +11,9 @@ get_header(); ?>
 
 <div id="content" class="container">
     <div id="primary" class="content-area">
+    <!-- Hook to add something usefull or necesary -->
+    <?php do_action('gsmtc_after_primary'); ?>  
+
         <?php the_breadcrumb(); ?>
         <div class="row">
             <div class="col-md-8 col-xxl-9">
