@@ -21,7 +21,12 @@ get_header();
     <?php do_action('gsmtc_after_primary'); ?>  
 
 	<div class="row">
-            <div class="col-md-8 col-xxl-9">
+
+        <?php  if ( is_active_sidebar( 'sidebar-1' ) ) {  ?>
+                    <div class="col-md-8 col-xxl-9">
+        <?php } else { ?>
+            <div class="col">
+        <?php } ?>
 
                 <main id="main" class="site-main">
 
@@ -54,7 +59,11 @@ get_header();
                 </main><!-- #main -->
 
             </div><!-- col -->
-            <?php get_sidebar(); ?>
+
+            <?php  if ( is_active_sidebar( 'sidebar-1' ) ) {
+                        get_sidebar(); 
+            }?>
+
         </div><!-- row -->
 
     </div><!-- #primary -->
