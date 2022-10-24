@@ -23,7 +23,7 @@ get_header();
         <main id="primary" class="site-main">
 
             <!-- Header -->
-            <div class="py-3 py-md-5 text-center">
+            <div class="text-center">
                 <h1 class="display-1"><?php bloginfo('name'); ?></h1>
                 <p class="lead"><?php bloginfo('description'); ?></p>
             </div>
