@@ -8,28 +8,46 @@
  */
 
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+	<div class="card horizontal mb-4">
+		<div class="row">
+			<!-- Featured Image-->
+			<?php if (has_post_thumbnail() )
+				echo '<div class="card-img-left-md col-lg-5">' . get_the_post_thumbnail(null, 'medium') . '</div>';
+				?>
+			<div class="col">
+				<div class="card-body">
+					
+                    <?php gsmtc_category_badge(); ?>
+                    
+					<!-- Title -->
+					<h2 class="blog-post-title">
+						<a href="<?php the_permalink(); ?>">
+						<?php the_title(); ?>
+						</a>
+					</h2>
+					<!-- Meta -->
+					<?php if ( 'post' === get_post_type() ) : ?>
+					<small class="text-muted mb-2">
+					<?php
+						gsmtc_date();
+						gsmtc_author();
+						gsmtc_comments();
+						gsmtc_edit();
+						?>
+					</small>
+					<?php endif; ?>	
+					<!-- Excerpt & Read more -->
+					<div class="card-text mt-auto">
+						<?php the_excerpt(); ?> <a class="read-more" href="<?php the_permalink(); ?>"><?php _e('Read more »', 'gsmtc'); ?></a>
+					</div>
+					<!-- Tags -->
+					<?php gsmtc_tags(); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>
+<!-- #post-<?php the_ID(); ?> -->
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php
-			gsmtc_posted_on();
-			gsmtc_posted_by();
-			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
 
-	<?php gsmtc_post_thumbnail(); ?>
-
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-	<footer class="entry-footer">
-		<?php gsmtc_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
